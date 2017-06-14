@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yuzhai.yuzhaiwork_2.login_reg.view.LoginRegActivity">
+
+    <ImageView
+        android:id="@+id/logo_img"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/title_logo" />
+
+    <RelativeLayout
+        android:id="@+id/wrap_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo_img"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/user_phone_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/color_9E9E9E"
+            app:counterEnabled="true"
+            app:counterMaxLength="11">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/user_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="11" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/psw_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_phone_layout"
+            android:textColorHint="@color/color_9E9E9E"
+            app:counterEnabled="true"
+            app:counterMaxLength="16">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/user_psw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:maxLength="16" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/psw_layout"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_style"
+            android:text="@string/login"
+            android:textColor="@color/color_white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/register_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_btn"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_button_style2"
+            android:text="@string/register"
+            android:textColor="@color/mainColor"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/forget_psw_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/register_btn"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_button_style2"
+            android:text="@string/forget_psw"
+            android:textColor="@color/mainColor"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+</RelativeLayout>

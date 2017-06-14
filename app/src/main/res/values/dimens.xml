@@ -1,0 +1,29 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!-- fragment_register -->
+    <dimen name="register_imageview_logo_height">200dp</dimen>
+    <dimen name="register_relativeLayout_marginLeftR">10dp</dimen>
+    <dimen name="register_editable_first_marginT">10dp</dimen>
+    <dimen name="register_editable_middle_padding">10dp</dimen>
+    <dimen name="register_editable_middle_marginT">10dp</dimen>
+    <dimen name="register_button_register_paddingT">20dp</dimen>
+    <dimen name="register_button_code_marginL">10dp</dimen>
+    <dimen name="register_textview_last_marginB">10dp</dimen>
+
+
+    <!-- fragment_login -->
+    <dimen name="login_imageview_logo_height">200dp</dimen>
+    <dimen name="login_relativeLayout_marginLeftR">10dp</dimen>
+    <dimen name="login_editable_first_marginT">20dp</dimen>
+    <dimen name="login_editable_middle_padding">12dp</dimen>
+    <dimen name="login_editable_second_marginT">10dp</dimen>
+    <dimen name="login_button_marginT">25dp</dimen>
+    <dimen name="login_textview_last_marginB">10dp</dimen>
+
+    <!-- fragment_login font -->
+    <dimen name="login_textview_last_textsize">15sp</dimen>
+</resources>

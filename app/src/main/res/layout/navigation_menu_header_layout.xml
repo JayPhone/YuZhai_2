@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_header"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@drawable/background">
+
+    <!--已登录-->
+    <com.yuzhai.yuzhaiwork_2.base.view.CircleImageView
+        android:id="@+id/head_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:src="@drawable/default_image"
+        custom:border_color="@color/color_white"
+        custom:border_width="2dp" />
+
+    <LinearLayout
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head_image"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/verify_user_phone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/phone_authen"
+            android:textColor="@color/color_white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="@color/color_white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/verify_real_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/realname_authen"
+            android:textColor="@color/color_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!--非登录-->
+    <Button
+        android:id="@+id/menu_login_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/head_button_bg"
+        android:text="@string/login_or_reg"
+        android:textColor="@color/color_white"
+        android:textSize="16sp" />
+</RelativeLayout>

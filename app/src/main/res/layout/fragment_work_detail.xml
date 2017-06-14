@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/colorPrimary"
+            app:expandedTitleMarginBottom="20dp"
+            app:expandedTitleMarginStart="20dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="@android:color/transparent"
+            app:title="¥ 500">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@drawable/bg"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax">
+
+                <com.yuzhai.yuzhaiwork_2.base.view.CircleImageView
+                    android:id="@+id/user_header"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/test2"
+                    app:border_color="@color/color_white"
+                    app:border_width="2dp" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/user_header"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@+id/user_header"
+                    android:text="神秘的发布方"
+                    android:textColor="@color/color_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tel_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_name"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/user_header"
+                    android:text="联系电话:"
+                    android:textColor="@color/color_white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/tel_title"
+                    android:textColor="@color/color_white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/Theme.ToolBar"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll"
+                app:navigationIcon="@drawable/back"
+                app:titleTextColor="@color/color_white" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--标题-->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/color_212121"
+                android:textSize="20sp" />
+
+            <!--需求描述导航-->
+            <TextView
+                android:id="@+id/description_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="项目描述"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/description_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/description_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <!--需求描述-->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description_divider"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/color_424242"
+                android:textSize="16sp" />
+
+            <!--需求图片导航-->
+            <TextView
+                android:id="@+id/images_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="项目图片"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/images_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/images_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/image_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/images_divider"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp" />
+
+            <!--需求详情导航-->
+            <TextView
+                android:id="@+id/detail_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_viewpager"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="项目信息"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/detail_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/detail_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <!--需求详情-->
+            <RelativeLayout
+                android:id="@+id/detail_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_divider"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp">
+
+                <!--订单号码-->
+                <RelativeLayout
+                    android:id="@+id/id_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/id_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/money" />
+
+                    <TextView
+                        android:id="@+id/id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/id_icon"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/id_icon"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/id_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/id"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toEndOf="@+id/id_icon"
+                        android:text="订单号码"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--订单状态-->
+                <RelativeLayout
+                    android:id="@+id/state_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/id_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/state_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/money" />
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/state_icon"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/state_icon"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/state_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/status"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toEndOf="@+id/state_icon"
+                        android:text="项目状态 - 状态有未接,已接,完成"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--订单期限-->
+                <RelativeLayout
+                    android:id="@+id/deadline_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/state_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/deadline_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/time" />
+
+                    <TextView
+                        android:id="@+id/deadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/deadline_icon"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/deadline_icon"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/deadline_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/deadline"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toEndOf="@+id/deadline_icon"
+                        android:text="项目期限 - 记得期限内交付哦"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--发布日期-->
+                <RelativeLayout
+                    android:id="@+id/date_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/deadline_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/date_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/date" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/date_icon"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/date_icon"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/date_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/date"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toEndOf="@+id/date_icon"
+                        android:text="发布日期"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <!--申请接单用户导航-->
+            <TextView
+                android:id="@+id/apply_user_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_wrap"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="申请用户"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/apply_user_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/apply_user_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <LinearLayout
+                android:id="@+id/apply_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/apply_user_divider"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" />
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/apply_order_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:src="@drawable/accept_order" />
+</android.support.design.widget.CoordinatorLayout>

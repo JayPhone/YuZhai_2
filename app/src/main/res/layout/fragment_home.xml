@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <com.yuzhai.yuzhaiwork_2.base.view.TranslucentScrollView
+        android:id="@+id/home_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/banner"
+                android:background="@color/color_white" />
+        </RelativeLayout>
+    </com.yuzhai.yuzhaiwork_2.base.view.TranslucentScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:elevation="4dp">
+
+        <FrameLayout
+            android:id="@+id/home_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <RelativeLayout
+            android:id="@+id/home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/home_status_bar"
+            android:background="@color/mainColor">
+
+            <ImageView
+                android:id="@+id/menu_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:src="@drawable/slide_menu" />
+
+            <TextView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="13dp"
+                android:layout_toLeftOf="@+id/notification_image"
+                android:layout_toRightOf="@+id/menu_image"
+                android:background="@drawable/home_title_search_style"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="输入搜索内容"
+                android:textColor="@color/color_white" />
+
+            <ImageView
+                android:id="@+id/search_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignRight="@+id/search_view"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/search" />
+
+            <ImageView
+                android:id="@+id/notification_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:src="@drawable/notifications" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

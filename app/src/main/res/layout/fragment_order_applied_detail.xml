@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--标题-->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:text="帮我做一个很厉害的毕业设计，记住，是很厉害的，普通厉害的不要!!"
+                android:textColor="@color/color_212121"
+                android:textSize="20sp" />
+
+            <!--需求描述导航-->
+            <TextView
+                android:id="@+id/description_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="项目描述"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/description_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/description_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <!--需求描述-->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description_divider"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="5dp"
+                android:text="帮我做一个很厉害的毕业设计，记住，是很厉害的，普通厉害的不要帮我做一个很厉害的毕业设计，记住，是很厉害的，普通厉害的不要帮我做一个很厉害的毕业设计，记住，是很厉害的，普通厉害的不要帮我做一个很厉害的毕业设计，记住，是很厉害的，普通厉害的不要帮我做一个很厉害的毕业设计，记住，是很厉害的，普通厉害的不要"
+                android:textColor="@color/color_424242"
+                android:textSize="16sp" />
+
+            <!--需求图片导航-->
+            <TextView
+                android:id="@+id/images_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="项目图片"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/images_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/images_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/image_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/images_divider"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp" />
+
+            <!--需求详情导航-->
+            <TextView
+                android:id="@+id/detail_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_viewpager"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="项目信息"
+                android:textColor="@color/color_616161"
+                android:textSize="17sp" />
+
+            <View
+                android:id="@+id/detail_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/detail_nav"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_EEEEEE" />
+
+            <!--需求详情-->
+            <RelativeLayout
+                android:id="@+id/detail_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_divider"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp">
+
+                <!--订单金额-->
+                <RelativeLayout
+                    android:id="@+id/price_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/price_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/money" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/price_icon"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/price_icon"
+                        android:text="100"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/price"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/price_icon"
+                        android:text="项目金额"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--订单号码-->
+                <RelativeLayout
+                    android:id="@+id/id_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/price_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/id_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/id" />
+
+                    <TextView
+                        android:id="@+id/id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/id_icon"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/id_icon"
+                        android:text="1954656112"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/id_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/id"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/id_icon"
+                        android:text="订单号码"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--订单状态-->
+                <RelativeLayout
+                    android:id="@+id/status_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/id_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/status_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/status" />
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/status_icon"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/status_icon"
+                        android:text="未接"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/status_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/status"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/status_icon"
+                        android:text="项目状态 - 状态有未接,已接,完成"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--订单期限-->
+                <RelativeLayout
+                    android:id="@+id/deadline_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/status_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/deadline_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/time" />
+
+                    <TextView
+                        android:id="@+id/deadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/deadline_icon"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/deadline_icon"
+                        android:text="30天"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/deadline_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/deadline"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/deadline_icon"
+                        android:text="项目期限 - 记得期限内交付哦"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--发布日期-->
+                <RelativeLayout
+                    android:id="@+id/date_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/deadline_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/date_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/date" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/date_icon"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/date_icon"
+                        android:text="2016-11-12"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/date_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/date"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/date_icon"
+                        android:text="发布日期"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!--联系电话-->
+                <RelativeLayout
+                    android:id="@+id/tel_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/date_layout"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/tel_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/tel" />
+
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/tel_icon"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/tel_icon"
+                        android:text="13048119089"
+                        android:textColor="@color/color_424242"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tel_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tel"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toRightOf="@+id/tel_icon"
+                        android:text="联系电话"
+                        android:textColor="@color/color_757575"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

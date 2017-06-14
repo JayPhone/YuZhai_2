@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/collection"
+            android:icon="@drawable/collection"
+            android:title="项目收藏" />
+        <item
+            android:id="@+id/resume"
+            android:icon="@drawable/resume"
+            android:title="简历投放" />
+        <item
+            android:id="@+id/realName"
+            android:icon="@drawable/real"
+            android:title="实名认证" />
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/setting"
+            android:title="软件设置" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/about"
+            android:title="关于我们" />
+        <item
+            android:id="@+id/login"
+            android:icon="@drawable/exit"
+            android:title="退出系统" />
+    </group>
+</menu>

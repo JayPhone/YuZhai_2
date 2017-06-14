@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/accepted_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/accepted_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:navigationIcon="@drawable/back"
+            app:subtitle="HJF"
+            app:subtitleTextColor="@color/color_EEEEEE"
+            app:title="发布者"
+            app:titleTextAppearance="@style/ToolbarTitleTextAppearance"
+            app:titleTextColor="@color/color_white">
+
+            <com.yuzhai.yuzhaiwork_2.base.view.CircleImageView
+                android:id="@+id/publisher_header"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/test2"
+                app:border_color="@color/color_white"
+                app:border_width="1dp" />
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            app:tabIndicatorColor="@color/mainColor"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/mainColor"
+            app:tabTextColor="@color/color_424242" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/accepted_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/cancel_order_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:src="@drawable/cancel" />
+
+</android.support.design.widget.CoordinatorLayout>
