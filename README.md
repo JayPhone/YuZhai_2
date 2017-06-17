@@ -6,4 +6,8 @@
 
 项目图片
 
-![主页](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/1.png)
+![image](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/1.png)
+![image](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/2.png)
+![image](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/3.png)
+![image](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/4.png)
+![image](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/5.png)
