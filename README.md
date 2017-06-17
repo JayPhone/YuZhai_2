@@ -6,4 +6,4 @@
 
 项目图片
 
-![image](https://github.com/JayPhone/YuZhai_2、tree/master/yuzhai_image/1.png)
+![主页](https://github.com/JayPhone/YuZhai_2/blob/master/yuzhai_image/1.png)
