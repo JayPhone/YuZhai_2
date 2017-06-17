@@ -26,7 +26,6 @@ public class OrderAppliedDetailPresenter implements OrderAppliedDetailContact.Pr
 
     @Override
     public void start() {
-        mOrderAppliedDetailView.get().showProgressDialog("正在加载数据，请稍后");
         sendOrderAppliedDetailRequest(new OrderAppliedDetailRequest(
                 mOrderAppliedDetailView.get().getOrderId()));
     }
@@ -40,6 +39,7 @@ public class OrderAppliedDetailPresenter implements OrderAppliedDetailContact.Pr
 
     @Override
     public void sendOrderAppliedDetailRequest(final OrderAppliedDetailRequest orderAppliedDetailRequest) {
+        mOrderAppliedDetailView.get().showProgressDialog("正在加载数据，请稍后");
         morderAppliedDetailModel.sendOrderAppliedDetailRequest(orderAppliedDetailRequest,
                 new BaseModel.OnRequestResponse<OrderAppliedDetailResponse>() {
                     @Override
@@ -62,6 +62,7 @@ public class OrderAppliedDetailPresenter implements OrderAppliedDetailContact.Pr
 
     @Override
     public void sendCancelAppliedOrderRequest(CancelAppliedOrderRequest cancelAppliedOrderRequest) {
+        mOrderAppliedDetailView.get().showProgressDialog("正在取消申请订单，请稍后");
         morderAppliedDetailModel.sendCancelAppliedOrderRequest(cancelAppliedOrderRequest,
                 new BaseModel.OnRequestResponse<CancelAppliedOrderResponse>() {
                     @Override
@@ -69,10 +70,11 @@ public class OrderAppliedDetailPresenter implements OrderAppliedDetailContact.Pr
                         if (mOrderAppliedDetailView.get() != null) {
                             mOrderAppliedDetailView.get().hideProgressDialog();
                             if (cancelAppliedOrderResponse.getCode().equals("1")) {
-                                mOrderAppliedDetailView.get().showToast("取消发布订单成功");
+                                mOrderAppliedDetailView.get().showToast("取消申请订单成功");
                             } else if (cancelAppliedOrderResponse.getCode().equals("-1")) {
                                 mOrderAppliedDetailView.get().showToast("退单失败,请稍后再试");
                             }
+                            mOrderAppliedDetailView.get().hideProgressDialog();
                         }
                     }
 

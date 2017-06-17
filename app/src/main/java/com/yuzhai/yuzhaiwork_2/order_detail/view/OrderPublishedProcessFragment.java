@@ -1,5 +1,6 @@
 package com.yuzhai.yuzhaiwork_2.order_detail.view;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,8 +17,8 @@ import com.baoyachi.stepview.VerticalStepView;
 import com.bumptech.glide.Glide;
 import com.yuzhai.yuzhaiwork_2.R;
 import com.yuzhai.yuzhaiwork_2.base.http.IPConfig;
-import com.yuzhai.yuzhaiwork_2.base.view.CircleImageView;
 import com.yuzhai.yuzhaiwork_2.order_detail.bean.OrderPublishedDetailResponse;
+import com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,6 +26,12 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity.AVATAR;
+import static com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity.ORDER;
+import static com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity.PRICE;
 
 /**
  * Created by 35429 on 2017/6/13.
@@ -43,10 +50,11 @@ public class OrderPublishedProcessFragment extends Fragment implements View.OnCl
     private VerticalStepView mVerticalStepView;
     private LinearLayout mApplyUserLayout;
     private List<CircleImageView> mImageViewList;
-    private List<String> list;
+    private OrderPublishedDetailResponse mOrderPublishedDetailResponse;
 
     @Nullable
     @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_published_process, container, false);
     }
@@ -74,13 +82,14 @@ public class OrderPublishedProcessFragment extends Fragment implements View.OnCl
     @Subscribe(threadMode = ThreadMode.POSTING)
     public void onDetailOrderData(OrderPublishedDetailResponse orderPublishedDetailResponse) {
         Log.d(TAG, orderPublishedDetailResponse.toString());
+        mOrderPublishedDetailResponse = orderPublishedDetailResponse;
         setApplicantAvatars(orderPublishedDetailResponse.getDetailed_order().getApplicant_avatars());
         setStepViewData(orderPublishedDetailResponse.getDetailed_order().getBidder());
     }
 
     private void setStepViewData(String binder) {
-//初始化进度数据
-        list = new ArrayList<>();
+        //初始化进度数据
+        List<String> list = new ArrayList<>();
         list.add("订单发布");
         list.add("等待用户申请接收订单");
         list.add("同意用户接收订单");
@@ -120,6 +129,7 @@ public class OrderPublishedProcessFragment extends Fragment implements View.OnCl
                 //获取头像
                 Glide.with(OrderPublishedProcessFragment.this)
                         .load(IPConfig.IMAGE_PREFIX + applicantAvatars.get(i).getApplicantAvatar())
+                        .dontAnimate()
                         .placeholder(R.drawable.default_image)
                         .error(R.drawable.default_image)
                         .into(circleImageView);
@@ -139,6 +149,24 @@ public class OrderPublishedProcessFragment extends Fragment implements View.OnCl
 
     @Override
     public void onClick(View v) {
-
+        Log.i(TAG, String.valueOf(v.getTag()));
+        Log.i(TAG, mImageViewList.toString());
+        for (int id = 0; id < mImageViewList.size(); id++) {
+            Object imageTag = mImageViewList.get(id).getTag();
+            if (imageTag == v.getTag()) {
+                Intent userData = new Intent(getActivity(), UserDataActivity.class);
+                //计算支付金额
+                double rewardPrice = Double.parseDouble(mOrderPublishedDetailResponse.
+                        getDetailed_order().getReward());
+                double cashDeposit = rewardPrice * 0.3;
+                double serviceCharge = rewardPrice * 0.03;
+                double allPrice = rewardPrice + cashDeposit + serviceCharge;
+                userData.putExtra(PRICE, String.valueOf(allPrice));
+                userData.putExtra(ORDER, mOrderPublishedDetailResponse.getDetailed_order().getOrder_id());
+                userData.putExtra(AVATAR, mOrderPublishedDetailResponse.getDetailed_order()
+                        .getApplicant_avatars().get(id).getApplicantAvatar());
+                getActivity().startActivity(userData);
+            }
+        }
     }
 }

@@ -30,16 +30,14 @@
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax">
 
-                <com.yuzhai.yuzhaiwork_2.base.view.CircleImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_header"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/test2"
-                    app:border_color="@color/color_white"
-                    app:border_width="2dp" />
+                    app:civ_border_color="@color/color_white"
+                    app:civ_border_width="2dp" />
 
                 <TextView
                     android:id="@+id/user_name"

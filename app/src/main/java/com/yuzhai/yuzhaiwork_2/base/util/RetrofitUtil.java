@@ -23,6 +23,8 @@ import com.yuzhai.yuzhaiwork_2.personal_order.request.AcceptedOrderService;
 import com.yuzhai.yuzhaiwork_2.personal_order.request.AppliedOrderService;
 import com.yuzhai.yuzhaiwork_2.personal_order.request.PublishedOrderService;
 import com.yuzhai.yuzhaiwork_2.resume.request.PublishResumeService;
+import com.yuzhai.yuzhaiwork_2.user_data.request.AgreeAcceptOrderService;
+import com.yuzhai.yuzhaiwork_2.user_data.request.UserDataService;
 import com.yuzhai.yuzhaiwork_2.user_info.request.ExitLoginService;
 import com.yuzhai.yuzhaiwork_2.user_info.request.ReNameService;
 import com.yuzhai.yuzhaiwork_2.user_info.request.UploadAvaterService;
@@ -232,5 +234,19 @@ public class RetrofitUtil {
      */
     public CancelAcceptedOrderService getCancelAcceptedOrderService() {
         return retrofit.create(CancelAcceptedOrderService.class);
+    }
+
+    /**
+     * 获取UserDataService
+     */
+    public UserDataService getUserDataService() {
+        return retrofit.create(UserDataService.class);
+    }
+
+    /**
+     * 获取AgreeAcceptOrderService
+     */
+    public AgreeAcceptOrderService getAgreeAcceptOrderService() {
+        return retrofit.create(AgreeAcceptOrderService.class);
     }
 }

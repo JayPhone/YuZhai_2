@@ -19,21 +19,22 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yuzhai.yuzhaiwork_2.R;
 import com.yuzhai.yuzhaiwork_2.base.http.IPConfig;
-import com.yuzhai.yuzhaiwork_2.base.view.CircleImageView;
 import com.yuzhai.yuzhaiwork_2.order_detail.adapter.OrdersAppliedViewPagerAdapter;
 import com.yuzhai.yuzhaiwork_2.order_detail.bean.OrderAppliedDetailResponse;
 import com.yuzhai.yuzhaiwork_2.order_detail.contact.OrderAppliedDetailContact;
-import com.yuzhai.yuzhaiwork_2.order_detail.contact.OrderPublishedDetailContact;
 import com.yuzhai.yuzhaiwork_2.order_detail.presenter.OrderAppliedDetailPresenter;
 import com.yuzhai.yuzhaiwork_2.order_detail.request.CancelAppliedOrderRequest;
-import com.yuzhai.yuzhaiwork_2.order_detail.request.OrderAppliedDetailRequest;
 import com.yuzhai.yuzhaiwork_2.personal_order.view.OrderAppliedFragment;
-import com.yuzhai.yuzhaiwork_2.personal_order.view.OrderPublishedFragment;
+import com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity.AVATAR;
 
 /**
  * Created by 35429 on 2017/6/13.
@@ -42,6 +43,8 @@ import java.util.List;
 public class OrderAppliedDetailActivity extends AppCompatActivity implements OrderAppliedDetailContact.View,
         View.OnClickListener {
     private OrderAppliedDetailContact.Presenter mPresenter;
+    private OrderAppliedDetailResponse mOrderAppliedDetailResponse;
+
     private Toolbar mToolbar;
     private CircleImageView mPublisherHeader;
     private ProgressDialog mProgressDialog;
@@ -65,9 +68,9 @@ public class OrderAppliedDetailActivity extends AppCompatActivity implements Ord
         mPublisherHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent userData = new Intent(OrdersAppliedActivity.this, UserDataActivity.class);
-//                userData.putExtra(AVATAR, mOrder.getPublisherAvatar());
-//                startActivity(userData);
+                Intent userData = new Intent(OrderAppliedDetailActivity.this, UserDataActivity.class);
+                userData.putExtra(AVATAR, mOrderAppliedDetailResponse.getDetailed_order().getPublisher_avatar());
+                startActivity(userData);
             }
         });
 
@@ -114,6 +117,7 @@ public class OrderAppliedDetailActivity extends AppCompatActivity implements Ord
 
     @Override
     public void setAppliedDetailData(OrderAppliedDetailResponse orderAppliedDetailResponse) {
+        mOrderAppliedDetailResponse = orderAppliedDetailResponse;
         EventBus.getDefault().post(orderAppliedDetailResponse);
         setPublishName(orderAppliedDetailResponse.getDetailed_order().getPublisher());
         setPublishAvater(orderAppliedDetailResponse.getDetailed_order().getPublisher_avatar());
@@ -177,6 +181,7 @@ public class OrderAppliedDetailActivity extends AppCompatActivity implements Ord
     public void setPublishAvater(String avatarUrl) {
         Glide.with(this)
                 .load(IPConfig.IMAGE_PREFIX + avatarUrl)
+                .dontAnimate()
                 .placeholder(R.drawable.default_image)
                 .error(R.drawable.default_image)
                 .into(mPublisherHeader);

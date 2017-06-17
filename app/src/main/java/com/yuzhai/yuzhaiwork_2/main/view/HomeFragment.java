@@ -32,6 +32,7 @@ import com.yuzhai.yuzhaiwork_2.main.adapter.HomeBannberAdapter;
 import com.yuzhai.yuzhaiwork_2.main.bean.BannerData;
 import com.yuzhai.yuzhaiwork_2.main.bean.CategoryData;
 import com.yuzhai.yuzhaiwork_2.main.contact.HomeContact;
+import com.yuzhai.yuzhaiwork_2.notification.view.NotificationCenterActivity;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -60,6 +61,7 @@ public class HomeFragment extends Fragment implements HomeContact.View, View.OnC
     private Disposable mDisposable;
     private List<BannerData> mBannerData;
     private boolean isLooping = false;
+    private boolean isInit = false;
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -96,6 +98,8 @@ public class HomeFragment extends Fragment implements HomeContact.View, View.OnC
             navigationImage.setOnClickListener(this);
             TextView searchView = (TextView) getView().findViewById(R.id.search_view);
             searchView.setOnClickListener(this);
+            ImageView notificationsImage = (ImageView) getView().findViewById(R.id.notification_image);
+            notificationsImage.setOnClickListener(this);
 
             //初始化标题栏透明滑动视图
             TranslucentScrollView translucentScrollView = (TranslucentScrollView) root.findViewById(R.id.home_scroll);
@@ -155,6 +159,10 @@ public class HomeFragment extends Fragment implements HomeContact.View, View.OnC
             case R.id.menu_image:
                 mDrawerLayout.openDrawer(Gravity.START);
                 break;
+            case R.id.notification_image:
+                Intent notification_center = new Intent(getActivity(), NotificationCenterActivity.class);
+                startActivity(notification_center);
+                break;
             case R.id.search_view:
 //                    Intent search_intent = new Intent();
 //                    search_intent.setClass(mainActivity, SearchActivity.class);
@@ -209,7 +217,10 @@ public class HomeFragment extends Fragment implements HomeContact.View, View.OnC
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        if (!isInit) {
+            mPresenter.start();
+            isInit = true;
+        }
     }
 
     @Override

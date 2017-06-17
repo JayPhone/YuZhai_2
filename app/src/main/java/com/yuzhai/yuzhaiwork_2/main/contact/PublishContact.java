@@ -2,6 +2,7 @@ package com.yuzhai.yuzhaiwork_2.main.contact;
 
 import com.yuzhai.yuzhaiwork_2.base.presenter.BasePresenter;
 import com.yuzhai.yuzhaiwork_2.base.view.BaseView;
+import com.yuzhai.yuzhaiwork_2.main.bean.PublishResponse;
 import com.yuzhai.yuzhaiwork_2.main.request.PublishRequest;
 
 import java.util.List;
@@ -40,6 +41,8 @@ public interface PublishContact {
         void hideProgressDialog();
 
         void clearInput();
+
+        void setPublishResult(PublishResponse publishResponse);
     }
 
     interface Presenter extends BasePresenter {

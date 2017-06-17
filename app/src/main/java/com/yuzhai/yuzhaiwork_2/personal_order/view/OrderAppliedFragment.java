@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.yuzhai.yuzhaiwork_2.R;
+import com.yuzhai.yuzhaiwork_2.base.event.LoginEvent;
 import com.yuzhai.yuzhaiwork_2.base.view.BaseLazyLoadFragment;
 import com.yuzhai.yuzhaiwork_2.order_detail.view.OrderAppliedDetailActivity;
 import com.yuzhai.yuzhaiwork_2.personal_order.adapter.AppliedRVAdapter;
@@ -22,6 +23,10 @@ import com.yuzhai.yuzhaiwork_2.personal_order.bean.OrderAppliedDatas;
 import com.yuzhai.yuzhaiwork_2.personal_order.bean.OrderPublishedDatas;
 import com.yuzhai.yuzhaiwork_2.personal_order.contact.OrderAppliedContact;
 import com.yuzhai.yuzhaiwork_2.personal_order.model.OrderAppliedRemoteRepertory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -39,6 +44,7 @@ public class OrderAppliedFragment extends BaseLazyLoadFragment implements OrderA
     private RecyclerView mAppliedRv;
     private AppliedRVAdapter mAdapter;
     private OrderAppliedDatas mOrderAppliedDatas;
+    private boolean isInit = false;
 
     public static OrderAppliedFragment newInstance() {
         Bundle args = new Bundle();
@@ -56,6 +62,7 @@ public class OrderAppliedFragment extends BaseLazyLoadFragment implements OrderA
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        EventBus.getDefault().register(this);
         View root = getView();
         if (root != null) {
             mAppliedSrl = (SwipeRefreshLayout) getView().findViewById(R.id.applied_order_refresh);
@@ -86,6 +93,14 @@ public class OrderAppliedFragment extends BaseLazyLoadFragment implements OrderA
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onLoginEvent(LoginEvent loginEvent) {
+        if (isInit) {
+            clearData();
+            mPresenter.start();
+        }
     }
 
     @Override
@@ -124,20 +139,21 @@ public class OrderAppliedFragment extends BaseLazyLoadFragment implements OrderA
 
     @Override
     public void clearData() {
-        mAdapter.notifyItemRangeRemoved(0, mOrderAppliedDatas.getOrders().size());
-        mOrderAppliedDatas.getOrders().clear();
+        if (mOrderAppliedDatas != null) {
+            if (mOrderAppliedDatas.getOrders().size() > 0) {
+                mAdapter.notifyItemRangeRemoved(0, mOrderAppliedDatas.getOrders().size());
+                mOrderAppliedDatas.getOrders().clear();
+            }
+        }
     }
 
     @Override
     protected void lazyLoadData() {
         super.lazyLoadData();
         Log.d(TAG, "lazyLoadData");
-        if (mOrderAppliedDatas != null) {
-            if (mOrderAppliedDatas.getOrders().size() > 0) {
-                clearData();
-            }
-        }
+        clearData();
         mPresenter.start();
+        isInit = true;
     }
 
     @Override
@@ -151,5 +167,11 @@ public class OrderAppliedFragment extends BaseLazyLoadFragment implements OrderA
         Intent appliedOrderDetail = new Intent(getActivity(), OrderAppliedDetailActivity.class);
         appliedOrderDetail.putExtra(ORDER_ID, orderId);
         getActivity().startActivity(appliedOrderDetail);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -40,9 +40,13 @@ import com.yuzhai.yuzhaiwork_2.base.util.BitmapUtil;
 import com.yuzhai.yuzhaiwork_2.base.util.FileUtil;
 import com.yuzhai.yuzhaiwork_2.base.util.GetPathUtil;
 import com.yuzhai.yuzhaiwork_2.login_reg.view.LoginRegActivity;
+import com.yuzhai.yuzhaiwork_2.main.bean.PublishResponse;
 import com.yuzhai.yuzhaiwork_2.main.contact.PublishContact;
+import com.yuzhai.yuzhaiwork_2.main.event.PublishedEvent;
 import com.yuzhai.yuzhaiwork_2.main.model.PublishRemoteModel;
 import com.yuzhai.yuzhaiwork_2.main.request.PublishRequest;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -340,6 +344,15 @@ public class PublishFragment extends Fragment implements PublishContact.View,
         mLimitSpinner.setSelection(0);
         mTelEdit.getText().clear();
         mRewardEdit.getText().clear();
+    }
+
+    @Override
+    public void setPublishResult(PublishResponse publishResponse) {
+        if (publishResponse.getCode().equals("1")) {
+            showToast("发布成功");
+            clearInput();
+            EventBus.getDefault().postSticky(new PublishedEvent());
+        }
     }
 
     /**

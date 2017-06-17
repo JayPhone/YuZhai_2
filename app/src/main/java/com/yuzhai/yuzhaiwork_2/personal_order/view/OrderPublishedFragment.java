@@ -13,12 +13,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.yuzhai.yuzhaiwork_2.R;
+import com.yuzhai.yuzhaiwork_2.base.event.LoginEvent;
 import com.yuzhai.yuzhaiwork_2.base.view.BaseLazyLoadFragment;
+import com.yuzhai.yuzhaiwork_2.main.event.PublishedEvent;
 import com.yuzhai.yuzhaiwork_2.order_detail.view.OrderPublishedDetailActivity;
 import com.yuzhai.yuzhaiwork_2.personal_order.adapter.PublishedRVAdapter;
 import com.yuzhai.yuzhaiwork_2.personal_order.bean.OrderPublishedDatas;
 import com.yuzhai.yuzhaiwork_2.personal_order.contact.OrderPublishedContact;
 import com.yuzhai.yuzhaiwork_2.personal_order.model.OrderPublishedRemoteRepertory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 /**
@@ -53,6 +59,7 @@ public class OrderPublishedFragment extends BaseLazyLoadFragment implements Orde
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        EventBus.getDefault().register(this);
         View root = getView();
         if (root != null) {
             mPublishedSrl = (SwipeRefreshLayout) getView().findViewById(R.id.published_order_refresh);
@@ -82,6 +89,22 @@ public class OrderPublishedFragment extends BaseLazyLoadFragment implements Orde
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onLoginEvent(LoginEvent loginEvent) {
+        if (isInit) {
+            clearData();
+            mPresenter.start();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
+    public void onPublished(PublishedEvent publishedEvent) {
+        if (isInit) {
+            clearData();
+            mPresenter.start();
+        }
     }
 
     @Override
@@ -119,8 +142,12 @@ public class OrderPublishedFragment extends BaseLazyLoadFragment implements Orde
 
     @Override
     public void clearData() {
-        mAdapter.notifyItemRangeRemoved(0, mOrderPublishedDatas.getOrders().size());
-        mOrderPublishedDatas.getOrders().clear();
+        if (mOrderPublishedDatas != null) {
+            if (mOrderPublishedDatas.getOrders().size() > 0) {
+                mAdapter.notifyItemRangeRemoved(0, mOrderPublishedDatas.getOrders().size());
+                mOrderPublishedDatas.getOrders().clear();
+            }
+        }
     }
 
     @Override
@@ -136,11 +163,7 @@ public class OrderPublishedFragment extends BaseLazyLoadFragment implements Orde
     protected void lazyLoadData() {
         super.lazyLoadData();
         if (isViewCreated) {
-            if (mOrderPublishedDatas != null) {
-                if (mOrderPublishedDatas.getOrders().size() > 0) {
-                    clearData();
-                }
-            }
+            clearData();
             mPresenter.start();
         }
     }
@@ -156,5 +179,11 @@ public class OrderPublishedFragment extends BaseLazyLoadFragment implements Orde
         Intent publishedOrderDetail = new Intent(getActivity(), OrderPublishedDetailActivity.class);
         publishedOrderDetail.putExtra(ORDER_ID, orderId);
         startActivity(publishedOrderDetail);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

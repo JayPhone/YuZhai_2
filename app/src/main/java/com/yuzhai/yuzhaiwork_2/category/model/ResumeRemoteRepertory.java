@@ -43,7 +43,6 @@ public class ResumeRemoteRepertory implements IResumeModel {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.d(TAG, e.getMessage());
                         onRequestResponse.onFailure(e);
                     }
 

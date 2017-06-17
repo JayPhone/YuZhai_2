@@ -121,11 +121,8 @@ public class PublishPresenter implements PublishContact.Presenter {
             @Override
             public void onSuccess(PublishResponse publishResponse) {
                 if (mPublishView.get().isActive()) {
-                    if (publishResponse.getCode().equals("1")) {
-                        mPublishView.get().showToast("发布成功");
-                        mPublishView.get().hideProgressDialog();
-                        mPublishView.get().clearInput();
-                    }
+                    mPublishView.get().hideProgressDialog();
+                    mPublishView.get().setPublishResult(publishResponse);
                 }
             }
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="notifications_db" />
+    <version value="1" />
+    <list>
+        <!--通知中心数据表-->
+        <mapping class="com.yuzhai.yuzhaiwork_2.notification.bean.NotificationDB" />
+    </list>
+</litepal>

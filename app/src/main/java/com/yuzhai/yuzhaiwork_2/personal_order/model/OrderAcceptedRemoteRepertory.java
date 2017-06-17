@@ -41,7 +41,6 @@ public class OrderAcceptedRemoteRepertory implements IOrderAcceptedModel {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.d(TAG, e.getMessage());
                         onRequestResponse.onFailure(e);
                     }
 

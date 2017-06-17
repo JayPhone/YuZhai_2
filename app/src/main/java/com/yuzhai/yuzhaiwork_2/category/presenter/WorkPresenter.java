@@ -52,6 +52,7 @@ public class WorkPresenter implements WorkContact.Presenter {
             public void onFailure(Throwable e) {
                 if (mWorkView.get().isActive()) {
                     mWorkView.get().showToast("数据加载错误");
+                    mWorkView.get().dimissLoading();
                 }
             }
         });

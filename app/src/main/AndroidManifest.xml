@@ -81,6 +81,12 @@
         <!--已申请订单详细界面-->
         <activity android:name=".order_detail.view.OrderAppliedDetailActivity" />
 
+        <!--用户基本信息界面-->
+        <activity android:name=".user_data.view.UserDataActivity" />
+
+        <!--通知中心界面-->
+        <activity android:name=".notification.view.NotificationCenterActivity" />
+
         <!--小米推送所需的service-->
         <service
             android:name="com.xiaomi.push.service.XMPushService"

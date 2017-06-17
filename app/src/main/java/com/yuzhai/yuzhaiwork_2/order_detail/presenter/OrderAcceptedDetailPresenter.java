@@ -26,7 +26,6 @@ public class OrderAcceptedDetailPresenter implements OrderAcceptedDetailContact.
 
     @Override
     public void start() {
-        mOrderAcceptedDetailView.get().showProgressDialog("正在加载数据，请稍后");
         sendOrderAcceptedDetailRequest(new OrderAcceptedDetailRequest(
                 mOrderAcceptedDetailView.get().getOrderId()));
     }
@@ -40,6 +39,7 @@ public class OrderAcceptedDetailPresenter implements OrderAcceptedDetailContact.
 
     @Override
     public void sendOrderAcceptedDetailRequest(OrderAcceptedDetailRequest orderAcceptedDetailRequest) {
+        mOrderAcceptedDetailView.get().showProgressDialog("正在加载数据，请稍后");
         mOrderAcceptedModel.sendOrderAcceptedDetailRequest(orderAcceptedDetailRequest,
                 new BaseModel.OnRequestResponse<OrderAcceptedDetailResponse>() {
                     @Override
@@ -62,17 +62,18 @@ public class OrderAcceptedDetailPresenter implements OrderAcceptedDetailContact.
 
     @Override
     public void sendCancelAcceptedOrderRequest(CancelAcceptedOrderRequest cancelAcceptedOrderRequest) {
+        mOrderAcceptedDetailView.get().showProgressDialog("正在取消接收订单,请稍后");
         mOrderAcceptedModel.sendCancelAcceptedOrderRequest(cancelAcceptedOrderRequest,
                 new BaseModel.OnRequestResponse<CancelAcceptedOrderResponse>() {
                     @Override
                     public void onSuccess(CancelAcceptedOrderResponse cancelAcceptedOrderResponse) {
                         if (mOrderAcceptedDetailView.get() != null) {
-                            mOrderAcceptedDetailView.get().hideProgressDialog();
                             if (cancelAcceptedOrderResponse.getCode().equals("1")) {
-                                mOrderAcceptedDetailView.get().showToast("取消发布订单成功");
+                                mOrderAcceptedDetailView.get().showToast("取消接收订单成功");
                             } else if (cancelAcceptedOrderResponse.getCode().equals("-1")) {
                                 mOrderAcceptedDetailView.get().showToast("退单失败,请稍后再试");
                             }
+                            mOrderAcceptedDetailView.get().hideProgressDialog();
                         }
                     }
 

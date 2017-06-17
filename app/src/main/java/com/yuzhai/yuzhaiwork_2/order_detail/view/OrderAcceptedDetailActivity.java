@@ -19,18 +19,20 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yuzhai.yuzhaiwork_2.R;
 import com.yuzhai.yuzhaiwork_2.base.http.IPConfig;
-import com.yuzhai.yuzhaiwork_2.base.view.CircleImageView;
 import com.yuzhai.yuzhaiwork_2.order_detail.adapter.OrdersAcceptedViewPagerAdapter;
 import com.yuzhai.yuzhaiwork_2.order_detail.bean.OrderAcceptedDetailResponse;
 import com.yuzhai.yuzhaiwork_2.order_detail.contact.OrderAcceptedDetailContact;
 import com.yuzhai.yuzhaiwork_2.order_detail.presenter.OrderAcceptedDetailPresenter;
+import com.yuzhai.yuzhaiwork_2.order_detail.request.CancelAcceptedOrderRequest;
 import com.yuzhai.yuzhaiwork_2.personal_order.view.OrderAcceptedFragment;
-import com.yuzhai.yuzhaiwork_2.personal_order.view.OrderAppliedFragment;
+import com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by 35429 on 2017/6/13.
@@ -38,11 +40,13 @@ import java.util.List;
 
 public class OrderAcceptedDetailActivity extends AppCompatActivity implements OrderAcceptedDetailContact.View,
         View.OnClickListener {
+    private OrderAcceptedDetailContact.Presenter mPresenter;
+    private OrderAcceptedDetailResponse mOrderAcceptedDetailResponse;
+
     private Toolbar mToolbar;
     private CircleImageView mPublisherHeader;
     private Dialog mCancelAcceptedOrderDialog;
     private ProgressDialog mProgressDialog;
-    private OrderAcceptedDetailContact.Presenter mPresenter;
     private boolean isInit = false;
 
     @Override
@@ -62,9 +66,9 @@ public class OrderAcceptedDetailActivity extends AppCompatActivity implements Or
         mPublisherHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent userData = new Intent(OrdersAcceptedActivity.this, UserDataActivity.class);
-//                userData.putExtra(AVATAR, mOrder.getPublisherAvatar());
-//                startActivity(userData);
+                Intent userData = new Intent(OrderAcceptedDetailActivity.this, UserDataActivity.class);
+                userData.putExtra(UserDataActivity.AVATAR, mOrderAcceptedDetailResponse.getDetailed_order().getPublisher_avatar());
+                startActivity(userData);
             }
         });
 
@@ -120,6 +124,7 @@ public class OrderAcceptedDetailActivity extends AppCompatActivity implements Or
 
     @Override
     public void setAcceptedDetailData(OrderAcceptedDetailResponse orderAcceptedDetailResponse) {
+        mOrderAcceptedDetailResponse = orderAcceptedDetailResponse;
         EventBus.getDefault().post(orderAcceptedDetailResponse);
         setPublishName(orderAcceptedDetailResponse.getDetailed_order().getPublisher());
         setPublishAvater(orderAcceptedDetailResponse.getDetailed_order().getPublisher_avatar());
@@ -156,7 +161,7 @@ public class OrderAcceptedDetailActivity extends AppCompatActivity implements Or
                     .setPositiveButton("我要取消接收", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-//                        sendCancelAcceptedRequest(mOrder.getOrderID());
+                            mPresenter.sendCancelAcceptedOrderRequest(new CancelAcceptedOrderRequest(getOrderId()));
                         }
                     })
                     .setNegativeButton("先不取消", null)
@@ -175,6 +180,7 @@ public class OrderAcceptedDetailActivity extends AppCompatActivity implements Or
     public void setPublishAvater(String avatarUrl) {
         Glide.with(this)
                 .load(IPConfig.IMAGE_PREFIX + "/" + avatarUrl)
+                .dontAnimate()
                 .placeholder(R.drawable.default_image)
                 .error(R.drawable.default_image)
                 .into(mPublisherHeader);

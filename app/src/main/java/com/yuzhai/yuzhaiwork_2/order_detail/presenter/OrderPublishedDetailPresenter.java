@@ -26,7 +26,6 @@ public class OrderPublishedDetailPresenter implements OrderPublishedDetailContac
 
     @Override
     public void start() {
-        mOrderPublishedDtailView.get().showProgressDialog("正在加载数据，请稍后");
         sendOrderPublishedDetailRequest(new OrderPublishedDetailRequest(
                 mOrderPublishedDtailView.get().getOrderId()));
     }
@@ -40,6 +39,7 @@ public class OrderPublishedDetailPresenter implements OrderPublishedDetailContac
 
     @Override
     public void sendOrderPublishedDetailRequest(OrderPublishedDetailRequest orderPublishedDetailRequest) {
+        mOrderPublishedDtailView.get().showProgressDialog("正在加载数据，请稍后");
         orderPublishedDetailModel.sendOrderPublishedDetailRequest(orderPublishedDetailRequest, new BaseModel.OnRequestResponse<OrderPublishedDetailResponse>() {
             @Override
             public void onSuccess(OrderPublishedDetailResponse orderPublishedDetailResponse) {
@@ -66,12 +66,12 @@ public class OrderPublishedDetailPresenter implements OrderPublishedDetailContac
             @Override
             public void onSuccess(CancelPublishedOrderResponse cancelPublishedOrderResponse) {
                 if (mOrderPublishedDtailView.get() != null) {
-                    mOrderPublishedDtailView.get().hideProgressDialog();
                     if (cancelPublishedOrderResponse.getCode().equals("1")) {
                         mOrderPublishedDtailView.get().showToast("取消发布订单成功");
                     } else if (cancelPublishedOrderResponse.getCode().equals("-1")) {
                         mOrderPublishedDtailView.get().showToast("退单失败,请稍后再试");
                     }
+                    mOrderPublishedDtailView.get().hideProgressDialog();
                 }
             }
 

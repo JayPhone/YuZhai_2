@@ -198,7 +198,7 @@ public class UserInfoManagerFragment extends Fragment implements UserInfoManager
     @Override
     public void exitLoginResponse(ExitLoginResponse exitLoginResponse) {
         if (exitLoginResponse.getCode().equals("1")) {
-            EventBus.getDefault().post(new LoginEvent(true));
+            EventBus.getDefault().post(new LoginEvent(false));
             CustomApplication.getInstance().setIoginState(false);
             getActivity().finish();
         }

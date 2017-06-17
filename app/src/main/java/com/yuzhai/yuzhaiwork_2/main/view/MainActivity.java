@@ -26,7 +26,9 @@ import com.yuzhai.yuzhaiwork_2.base.global.CustomApplication;
 import com.yuzhai.yuzhaiwork_2.base.http.IPConfig;
 import com.yuzhai.yuzhaiwork_2.base.util.ActivityUtil;
 import com.yuzhai.yuzhaiwork_2.base.util.SharePerferenceUtil;
-import com.yuzhai.yuzhaiwork_2.base.view.CircleImageView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import com.yuzhai.yuzhaiwork_2.collection.view.CollectionActivity;
 import com.yuzhai.yuzhaiwork_2.login_reg.event.UserInfoEvent;
 import com.yuzhai.yuzhaiwork_2.login_reg.view.LoginRegActivity;
@@ -356,6 +358,7 @@ public class MainActivity extends AppCompatActivity implements
             Log.i(TAG, IPConfig.IMAGE_PREFIX + "/" + userHeadUrl);
             Glide.with(this)
                     .load(IPConfig.IMAGE_PREFIX + "/" + userHeadUrl)
+                    .dontAnimate()
                     .placeholder(R.drawable.default_image)
                     .error(R.drawable.default_image)
                     .into(mUserAvater);

@@ -2,7 +2,9 @@ package com.yuzhai.yuzhaiwork_2.category.model;
 
 import android.util.Log;
 
+import com.yuzhai.yuzhaiwork_2.base.global.CustomApplication;
 import com.yuzhai.yuzhaiwork_2.base.util.RetrofitUtil;
+import com.yuzhai.yuzhaiwork_2.base.util.SharePerferenceUtil;
 import com.yuzhai.yuzhaiwork_2.category.bean.WorkDatas;
 import com.yuzhai.yuzhaiwork_2.category.request.WorkRequest;
 
@@ -19,11 +21,17 @@ import static android.content.ContentValues.TAG;
  */
 
 public class WorkRemoteRepertory implements IWorkModel {
+    private static final String TAG = "WorkRemoteRepertory";
     public final static String IS_FIRST_TIME = "yes";
     public final static String NOT_FIRST_TIME = "no";
 
     @Override
     public void getWorkData(WorkRequest workRequest, final OnRequestResponse<WorkDatas> onRequestResponse) {
+        if (!CustomApplication.getInstance().isLogin()) {
+            //清空cookie
+            SharePerferenceUtil.getSharePerference(CustomApplication.getInstance().getApplicationContext(), SharePerferenceUtil.FileName.COOKIE)
+                    .edit().putString(SharePerferenceUtil.Key.COOKIE, "").apply();
+        }
         RetrofitUtil.getInstance()
                 .getWorkDataService()
                 .getWorkData(workRequest.getCategoryType(), workRequest.getIsFirst())
@@ -43,7 +51,6 @@ public class WorkRemoteRepertory implements IWorkModel {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.d(TAG, e.getMessage());
                         onRequestResponse.onFailure(e);
                     }
 

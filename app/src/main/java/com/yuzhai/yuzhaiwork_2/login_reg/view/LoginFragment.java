@@ -109,7 +109,8 @@ public class LoginFragment extends Fragment implements LoginContact.View, View.O
         //发送登录成功返回的数据给MainActivity
         EventBus.getDefault().post(new UserInfoEvent(
                 loginResponse.getUser_name(), loginResponse.getUser_head_url()));
-        getActivity().finish();
+        //发送登录成功的广播事件
         EventBus.getDefault().post(new LoginEvent(true));
+        getActivity().finish();
     }
 }

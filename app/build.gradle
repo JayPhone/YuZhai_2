@@ -63,6 +63,11 @@ dependencies {
     //图片压缩
     compile 'top.zibin:Luban:1.0.9'
     compile 'io.reactivex:rxjava:1.1.6'
+    compile 'io.reactivex:rxandroid:1.2.1'
     //进度控件
     compile 'com.github.baoyachi:StepView:1.9'
+    //圆形ImageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //ORM数据库
+    compile 'org.litepal.android:core:1.5.1'
 }

@@ -28,7 +28,6 @@ import com.bumptech.glide.Glide;
 import com.yuzhai.yuzhaiwork_2.R;
 import com.yuzhai.yuzhaiwork_2.base.global.CustomApplication;
 import com.yuzhai.yuzhaiwork_2.base.http.IPConfig;
-import com.yuzhai.yuzhaiwork_2.base.view.CircleImageView;
 import com.yuzhai.yuzhaiwork_2.category.view.WorkFragment;
 import com.yuzhai.yuzhaiwork_2.collection.view.CollectionActivity;
 import com.yuzhai.yuzhaiwork_2.order_detail.adapter.NeededImageAdapter;
@@ -36,9 +35,13 @@ import com.yuzhai.yuzhaiwork_2.order_detail.bean.NeededImageData;
 import com.yuzhai.yuzhaiwork_2.order_detail.bean.WorkDetailResponse;
 import com.yuzhai.yuzhaiwork_2.order_detail.contact.WorkDetailContact;
 import com.yuzhai.yuzhaiwork_2.order_detail.request.ApplyOrderRequest;
+import com.yuzhai.yuzhaiwork_2.user_data.view.UserDataActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by 35429 on 2017/6/12.
@@ -58,6 +61,7 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
     }
 
     private WorkDetailContact.Presenter mPresenter;
+    private WorkDetailResponse mWorkDetailResponse;
 
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private TextView mTitle;
@@ -74,6 +78,7 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
     private FloatingActionButton mApplyOrderFab;
     private ProgressDialog mProgressDialog;
     private Dialog mApplyOrderDialog;
+    private boolean isInit = false;
 
     @Nullable
     @Override
@@ -105,9 +110,9 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
             mUserHeader.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent userData = new Intent(WorkDetailActivity.this, UserDataActivity.class);
-//                    userData.putExtra(AVATAR, mOrder.getPublisherAvatar());
-//                    startActivity(userData);
+                    Intent userData = new Intent(getActivity(), UserDataActivity.class);
+                    userData.putExtra(UserDataActivity.AVATAR, mWorkDetailResponse.getDetailed_order().getPublisher_avatar());
+                    startActivity(userData);
                 }
             });
 
@@ -147,7 +152,10 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        if (!isInit) {
+            mPresenter.start();
+            isInit = true;
+        }
     }
 
     @Override
@@ -195,6 +203,7 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
 
     @Override
     public void setWorkDetailData(WorkDetailResponse workDetailData) {
+        mWorkDetailResponse = workDetailData;
         //设置订单标题
         mTitle.setText(workDetailData.getDetailed_order().getTitle());
         //设置订单金额
@@ -219,6 +228,7 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
         Log.d(TAG, IPConfig.IMAGE_PREFIX + workDetailData.getDetailed_order().getPublisher_avatar());
         Glide.with(this)
                 .load(IPConfig.IMAGE_PREFIX + workDetailData.getDetailed_order().getPublisher_avatar())
+                .dontAnimate()
                 .placeholder(R.drawable.default_image)
                 .error(R.drawable.default_image)
                 .into(mUserHeader);
@@ -244,7 +254,7 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
     @Override
     public void hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.hide();
+            mProgressDialog.dismiss();
         }
     }
 
@@ -282,8 +292,9 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
 
                 circleImageView.setLayoutParams(params);
                 Log.i(TAG, applicantAvatarses.get(i).getApplicantAvatar());
-                Glide.with(getActivity().getApplicationContext())
+                Glide.with(this)
                         .load(IPConfig.IMAGE_PREFIX + applicantAvatarses.get(i).getApplicantAvatar())
+                        .dontAnimate()
                         .placeholder(R.drawable.default_image)
                         .error(R.drawable.default_image)
                         .into(circleImageView);
@@ -323,8 +334,5 @@ public class WorkDetailFragment extends Fragment implements WorkDetailContact.Vi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mProgressDialog != null) {
-            mProgressDialog.dismiss();
-        }
     }
 }
