@@ -4,3 +4,5 @@
 
 使用了常用的开发库，图片加载Glide，事件总线EventBus，ORM数据库Litepal，推送服务MiPush等
 
+项目图片
+![image](https://github.com/JayPhone/YuZhai_2/yuzhai_image/1.png)
